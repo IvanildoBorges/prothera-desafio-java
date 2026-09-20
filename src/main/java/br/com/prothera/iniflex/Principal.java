@@ -17,6 +17,11 @@ public class Principal {
         // Imprimir todos os funcionários
         System.out.println("----- FUNCIONÁRIOS -----");
         imprimirFuncionarios(funcionarios);
+
+        // Aumento de 10%
+        service.aplicarAumento(funcionarios);
+        System.out.println("\n----- FUNCIONÁRIOS APÓS AUMENTO DE 10% -----");
+        imprimirFuncionarios(funcionarios);
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {

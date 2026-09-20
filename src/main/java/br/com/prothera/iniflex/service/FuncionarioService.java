@@ -31,4 +31,14 @@ public class FuncionarioService {
             }
         }
     }
+
+    public void aplicarAumento(List<Funcionario> funcionarios) {
+        BigDecimal percentual = new BigDecimal("0.10");
+        
+        for (Funcionario funcionario : funcionarios) {
+            BigDecimal aumento = funcionario.getSalario().multiply(percentual);
+            BigDecimal novoSalario = funcionario.getSalario().add(aumento);
+            funcionario.setSalario(novoSalario);
+        }
+    }
 }
