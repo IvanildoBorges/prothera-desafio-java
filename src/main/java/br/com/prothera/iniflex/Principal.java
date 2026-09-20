@@ -2,6 +2,7 @@ package br.com.prothera.iniflex;
 import br.com.prothera.iniflex.model.Funcionario;
 import br.com.prothera.iniflex.service.FuncionarioService;
 import br.com.prothera.iniflex.util.Formatador;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,14 @@ public class Principal {
         BigDecimal total = service.calcularTotalSalarios(funcionarios);
         System.out.println("\n----- TOTAL DOS SALÁRIOS -----");
         System.out.println("Total: R$ " + Formatador.formatarValor(total));
+
+        // Quantidade de salários mínimos que cada funcionário recebe
+        BigDecimal salarioMinimo = new BigDecimal("1212.00");
+        Map<String, BigDecimal> salariosMinimos = service.calcularSalariosMinimos(funcionarios, salarioMinimo);
+        System.out.println("\n----- SALÁRIOS MÍNIMOS -----");
+        for (String nome : salariosMinimos.keySet()) {
+            System.out.println(nome + " recebe aproximadamente " + salariosMinimos.get(nome) + " salários mínimos.");
+        }
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {

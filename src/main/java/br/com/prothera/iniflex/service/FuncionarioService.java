@@ -1,6 +1,7 @@
 package br.com.prothera.iniflex.service;
 import br.com.prothera.iniflex.model.Funcionario;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -109,5 +110,14 @@ public class FuncionarioService {
         return total;
     }
 
-    
+    public Map<String, BigDecimal> calcularSalariosMinimos(List<Funcionario> funcionarios, BigDecimal salarioMinimo) {
+        Map<String, BigDecimal> resultado = new LinkedHashMap<>();
+
+        for (Funcionario funcionario : funcionarios) {
+            BigDecimal quantidade = funcionario.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP);
+            resultado.put(funcionario.getNome(), quantidade);
+        }
+
+        return resultado;
+    }
 }
