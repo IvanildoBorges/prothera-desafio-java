@@ -22,4 +22,13 @@ public class FuncionarioService {
 
         return funcionarios;
     }
+
+    public void removerPorNome(List<Funcionario> funcionarios, String nome) {
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getNome().equals(nome)) {
+                funcionarios.remove(i);
+                break;
+            }
+        }
+    }
 }
