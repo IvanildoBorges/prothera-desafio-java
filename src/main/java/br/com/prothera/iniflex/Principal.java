@@ -1,7 +1,7 @@
 package br.com.prothera.iniflex;
 import br.com.prothera.iniflex.model.Funcionario;
 import br.com.prothera.iniflex.service.FuncionarioService;
-import br.com.prothera.iniflex.util.Formatador;
+import br.com.prothera.iniflex.utils.Formatador;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
