@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,4 +94,10 @@ public class FuncionarioService {
     public int calcularIdade(LocalDate dataNascimento, LocalDate dataAtual) {
         return Period.between(dataNascimento, dataAtual).getYears();
     }
+
+    public void ordenarPorNome(List<Funcionario> funcionarios) {
+        funcionarios.sort(Comparator.comparing(Funcionario::getNome));
+    }
+
+    
 }
