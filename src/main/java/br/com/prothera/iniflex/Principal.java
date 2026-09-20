@@ -1,5 +1,7 @@
 package br.com.prothera.iniflex;
+import br.com.prothera.iniflex.model.Funcionario;
 import br.com.prothera.iniflex.service.FuncionarioService;
+import br.com.prothera.iniflex.util.Formatador;
 import java.util.List;
 
 public class Principal {
@@ -11,5 +13,23 @@ public class Principal {
 
         // Remover funcionário João
         service.removerPorNome(funcionarios, "João");
+
+        // Imprimir todos os funcionários
+        System.out.println("----- FUNCIONÁRIOS -----");
+        imprimirFuncionarios(funcionarios);
+    }
+
+    private static void imprimirFuncionarios(List<Funcionario> funcionarios) {
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(
+                "Nome: " + funcionario.getNome()
+                + " | Data de nascimento: "
+                + Formatador.formatarData(funcionario.getDataNascimento())
+                + " | Salário: R$ "
+                + Formatador.formatarValor(funcionario.getSalario())
+                + " | Função: "
+                + funcionario.getFuncao()
+            );
+        }
     }
 }
