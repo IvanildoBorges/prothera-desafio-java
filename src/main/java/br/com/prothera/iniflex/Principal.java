@@ -2,6 +2,7 @@ package br.com.prothera.iniflex;
 import br.com.prothera.iniflex.model.Funcionario;
 import br.com.prothera.iniflex.service.FuncionarioService;
 import br.com.prothera.iniflex.util.Formatador;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,11 @@ public class Principal {
             );
         }
 
-
+        // Funcionário com maior idade
+        Funcionario maisVelho = service.buscarMaisVelho(funcionarios);
+        int idadeMaisVelho = service.calcularIdade(maisVelho.getDataNascimento(), LocalDate.now());
+        System.out.println("\n----- FUNCIONÁRIO MAIS VELHO -----");
+        System.out.println("Nome: " + maisVelho.getNome() + " | Idade: " + idadeMaisVelho);
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {

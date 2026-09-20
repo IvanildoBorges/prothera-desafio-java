@@ -2,6 +2,7 @@ package br.com.prothera.iniflex.service;
 import br.com.prothera.iniflex.model.Funcionario;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -72,5 +73,24 @@ public class FuncionarioService {
         }
 
         return aniversariantes;
+    }
+
+    public Funcionario buscarMaisVelho(List<Funcionario> funcionarios) {
+        LocalDate hoje = LocalDate.now();
+        Funcionario maisVelho = funcionarios.get(0);
+
+        for (Funcionario funcionario : funcionarios) {
+            int idadeFuncionario = calcularIdade(funcionario.getDataNascimento(), hoje);
+            int idadeMaisVelho = calcularIdade(maisVelho.getDataNascimento(), hoje);
+            if (idadeFuncionario > idadeMaisVelho) {
+                maisVelho = funcionario;
+            }
+        }
+
+        return maisVelho;
+    }
+
+    public int calcularIdade(LocalDate dataNascimento, LocalDate dataAtual) {
+        return Period.between(dataNascimento, dataAtual).getYears();
     }
 }
