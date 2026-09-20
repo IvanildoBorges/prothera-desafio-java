@@ -99,5 +99,15 @@ public class FuncionarioService {
         funcionarios.sort(Comparator.comparing(Funcionario::getNome));
     }
 
+    public BigDecimal calcularTotalSalarios(List<Funcionario> funcionarios) {
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (Funcionario funcionario : funcionarios) {
+            total = total.add(funcionario.getSalario());
+        }
+
+        return total;
+    }
+
     
 }
