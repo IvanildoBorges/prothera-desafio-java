@@ -51,6 +51,15 @@ public class Principal {
         int idadeMaisVelho = service.calcularIdade(maisVelho.getDataNascimento(), LocalDate.now());
         System.out.println("\n----- FUNCIONÁRIO MAIS VELHO -----");
         System.out.println("Nome: " + maisVelho.getNome() + " | Idade: " + idadeMaisVelho);
+
+        // Ordem alfabética
+        service.ordenarPorNome(funcionarios);
+        System.out.println("\n----- FUNCIONÁRIOS EM ORDEM ALFABÉTICA -----");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario.getNome());
+        }
+
+        
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {
