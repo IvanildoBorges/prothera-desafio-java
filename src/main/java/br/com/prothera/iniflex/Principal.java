@@ -3,6 +3,7 @@ import br.com.prothera.iniflex.model.Funcionario;
 import br.com.prothera.iniflex.service.FuncionarioService;
 import br.com.prothera.iniflex.util.Formatador;
 import java.util.List;
+import java.util.Map;
 
 public class Principal {
     public static void main(String[] args) {
@@ -22,6 +23,19 @@ public class Principal {
         service.aplicarAumento(funcionarios);
         System.out.println("\n----- FUNCIONÁRIOS APÓS AUMENTO DE 10% -----");
         imprimirFuncionarios(funcionarios);
+
+        // Agrupa e imprimi por função
+        Map<String, List<Funcionario>> porFuncao = service.agruparPorFuncao(funcionarios);
+        System.out.println("\n----- FUNCIONÁRIOS POR FUNÇÃO -----");
+        for (String funcao : porFuncao.keySet()) {
+            System.out.println("\nFunção: " + funcao);
+            for (Funcionario funcionario : porFuncao.get(funcao)) {
+                System.out.println(
+                    funcionario.getNome() + " - R$ " + Formatador.formatarValor(funcionario.getSalario())
+                );
+            }
+        }
+        
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {

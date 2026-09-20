@@ -3,7 +3,9 @@ import br.com.prothera.iniflex.model.Funcionario;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FuncionarioService {
     public List<Funcionario> criarFuncionarios() {
@@ -34,11 +36,27 @@ public class FuncionarioService {
 
     public void aplicarAumento(List<Funcionario> funcionarios) {
         BigDecimal percentual = new BigDecimal("0.10");
-        
+
         for (Funcionario funcionario : funcionarios) {
             BigDecimal aumento = funcionario.getSalario().multiply(percentual);
             BigDecimal novoSalario = funcionario.getSalario().add(aumento);
             funcionario.setSalario(novoSalario);
         }
+    }
+
+    public Map<String, List<Funcionario>> agruparPorFuncao(List<Funcionario> funcionarios) {
+        Map<String, List<Funcionario>> funcionariosPorFuncao = new LinkedHashMap<>();
+
+        for (Funcionario funcionario : funcionarios) {
+            String funcao = funcionario.getFuncao();
+
+            if (!funcionariosPorFuncao.containsKey(funcao)) {
+                funcionariosPorFuncao.put(funcao, new ArrayList<>());
+            }
+
+            funcionariosPorFuncao.get(funcao).add(funcionario);
+        }
+
+        return funcionariosPorFuncao;
     }
 }
