@@ -59,7 +59,10 @@ public class Principal {
             System.out.println(funcionario.getNome());
         }
 
-        
+        // Total dos salários
+        BigDecimal total = service.calcularTotalSalarios(funcionarios);
+        System.out.println("\n----- TOTAL DOS SALÁRIOS -----");
+        System.out.println("Total: R$ " + Formatador.formatarValor(total));
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {
