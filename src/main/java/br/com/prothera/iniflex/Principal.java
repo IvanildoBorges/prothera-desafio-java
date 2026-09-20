@@ -35,7 +35,17 @@ public class Principal {
                 );
             }
         }
-        
+
+        // Aniversariantes de outubro e dezembro
+        List<Funcionario> aniversariantes = service.buscarAniversariantes(funcionarios, 10, 12);
+        System.out.println("\n----- ANIVERSARIANTES DE OUTUBRO E DEZEMBRO -----");
+        for (Funcionario funcionario : aniversariantes) {
+            System.out.println(
+                funcionario.getNome() + " - " + Formatador.formatarData(funcionario.getDataNascimento())
+            );
+        }
+
+
     }
 
     private static void imprimirFuncionarios(List<Funcionario> funcionarios) {

@@ -59,4 +59,18 @@ public class FuncionarioService {
 
         return funcionariosPorFuncao;
     }
+
+    public List<Funcionario> buscarAniversariantes(List<Funcionario> funcionarios, int primeiroMes, int segundoMes) {
+        List<Funcionario> aniversariantes = new ArrayList<>();
+
+        for (Funcionario funcionario : funcionarios) {
+            int mes = funcionario.getDataNascimento().getMonthValue();
+
+            if (mes == primeiroMes || mes == segundoMes) {
+                aniversariantes.add(funcionario);
+            }
+        }
+
+        return aniversariantes;
+    }
 }
